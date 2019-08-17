@@ -1,11 +1,16 @@
 import React, { Component } from "react"
-import styled, { createGlobalStyle, css } from "styled-components"
+import styled, { createGlobalStyle, css, ThemeProvider } from "styled-components"
+import theme from "./theme"
 
 const GlobalStyel = createGlobalStyle`
   body{
     margin: 0px;
     padding: 0px;
   }
+`
+
+const Container = styled.div`
+  background-color: yellow;
 `
 
 const awesomeCard = css`
@@ -22,21 +27,20 @@ const Input = styled.input.attrs({
   border: none;
   border-radius: 5px;
   ${awesomeCard}
+  background-color: ${props => props.theme.mainColor};
 `
 
 class App extends Component {
   render() {
     return (
-      <Container>
-        <GlobalStyel />
-        <Input placeholder="Hi" />
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <GlobalStyel />
+          <Input placeholder="Hi" />
+        </Container>
+      </ThemeProvider>
     )
   }
 }
-
-const Container = styled.div`
-  background-color: yellow;
-`
 
 export default App
